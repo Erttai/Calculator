@@ -1,0 +1,173 @@
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan&display=swap");
+*,
+::before,
+::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Backgrounds */
+  --main-bg-blue: hsl(222, 26%, 31%);
+  --toggle-bg-blue: hsl(223, 31%, 20%);
+  --screen-bg-dark-blue: hsl(224, 36%, 15%);
+
+  /*Keys*/
+  --key-bg-blue: hsl(225, 21%, 49%);
+  --key-bg-blue-hover: hsl(223.81, 51.22%, 75.88%);
+  --key-shadow-blue: hsl(224, 28%, 35%);
+
+  --key-bg-red: hsl(6, 63%, 50%);
+  --key-bg-red-hover: hsl(6.46, 92.94%, 66.67%);
+  --key-shadow-red: hsl(6, 70%, 34%);
+
+  --key-bg-light: hsl(30, 25%, 89%);
+  --key-bg-hover: #ffffff;
+  --key-shadow-light: hsl(28, 16%, 65%);
+
+  /*Text*/
+  --text-grayish-blue: hsl(221, 14%, 31%);
+  --text-white-pure: #ffffff;
+}
+
+body {
+  background: var(--main-bg-blue);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  color: var(--text-white-pure);
+  padding: 1.5rem;
+  font-family: "League Spartan", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0 1.5rem 0.5rem;
+  background: var(--main-bg-blue);
+  /* border: 2px solid yellow; */
+  position: relative;
+}
+
+.header:before {
+  content: "123";
+  position: absolute;
+  top: -0;
+  right: 0;
+  font-size: 0.5rem;
+  letter-spacing: 12.3px;
+  margin-top: 0.8rem;
+  /* margin-right: 0.1rem; */
+}
+
+.header__themes {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+}
+
+.header__themes p {
+  font-size: 0.5rem;
+  letter-spacing: 2px;
+}
+
+.header__themes--toggle {
+  width: 60px;
+  height: 22px;
+  border-radius: 50px;
+  background: var(--toggle-bg-blue);
+  position: relative;
+  cursor: pointer;
+}
+
+.header__themes--toggle::before {
+  content: "";
+  width: 15px;
+  height: 14px;
+  background: var(--key-bg-red);
+  border-radius: 50%;
+  position: absolute;
+  top: 4px;
+  left: 21.5px; /*6, 21.5 38.5*/
+}
+
+.header__themes--toggle:hover::before {
+  background: var(--key-bg-red-hover);
+}
+
+.calc-screen {
+  background: var(--screen-bg-dark-blue);
+  padding: 1.5rem;
+  border-radius: 5px;
+  text-align: right;
+  margin-bottom: 1.5rem;
+  letter-spacing: 2px;
+}
+
+.calc-grid {
+  background: var(--toggle-bg-blue);
+  color: var(--text-grayish-blue);
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.8rem;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: 900;
+}
+
+.calc__btn {
+  padding: 0.6rem;
+  background: var(--key-bg-light);
+  border-radius: 5px;
+  box-shadow: 0 3px var(--key-shadow-light);
+  color: var(--text-grayish-blue);
+  cursor: pointer;
+}
+
+.calc__btn:hover {
+  background: #ffffff;
+}
+
+.blue__btn {
+  background: var(--key-bg-blue);
+  color: var(--text-white-pure);
+  box-shadow: 0 3px var(--key-shadow-blue);
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.blue__btn:hover {
+  background: var(--key-bg-blue-hover);
+}
+
+.red__btn {
+  background: var(--key-bg-red);
+  color: var(--text-white-pure);
+  box-shadow: 0 3px var(--key-shadow-red);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.red__btn:hover {
+  background: var(--key-bg-red-hover);
+}
+
+.grid-span-col-2 {
+  grid-column: span 2;
+}
