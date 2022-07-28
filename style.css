@@ -29,6 +29,8 @@
   /*Text*/
   --text-grayish-blue: hsl(221, 14%, 31%);
   --text-white-pure: #ffffff;
+  --text-screen: #ffffff;
+  --text-equal-sign: #ffffff;
 }
 
 body {
@@ -37,6 +39,58 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.theme-two {
+  /* Backgrounds */
+  --main-bg-blue: hsl(0, 0%, 90%);
+  --toggle-bg-blue: hsl(0, 5%, 81%);
+  --screen-bg-dark-blue: hsl(0, 0%, 93%);
+
+  /*Keys*/
+  --key-bg-blue: hsl(185, 42%, 37%);
+  --key-bg-blue-hover: hsl(185.27, 40.81%, 56.27%);
+  --key-shadow-blue: hsl(185, 58%, 25%);
+
+  --key-bg-red: hsl(25, 98%, 40%);
+  --key-bg-red-hover: hsl(25.03, 100%, 60.98%);
+  --key-shadow-red: hsl(25, 99%, 27%);
+
+  --key-bg-light: hsl(45, 7%, 89%);
+  --key-bg-hover: #ffffff;
+  --key-shadow-light: hsl(35, 11%, 61%);
+
+  /*Text*/
+  --text-grayish-blue: hsl(60, 10%, 19%);
+  --text-white-pure: #ffffff;
+  --text-screen: hsl(60, 10%, 19%);
+  --text-equal-sign: #ffffff;
+}
+
+.theme-three {
+  /* Backgrounds */
+  --main-bg-blue: hsl(268, 75%, 9%);
+  --toggle-bg-blue: hsl(268, 71%, 12%);
+  --screen-bg-dark-blue: hsl(268, 71%, 12%);
+
+  /*Keys*/
+  --key-bg-blue: hsl(281, 89%, 26%);
+  --key-bg-blue-hover: hsl(280.16, 56.44%, 44.12%);
+  --key-shadow-blue: hsl(285, 91%, 52%);
+
+  --key-bg-red: hsl(176, 100%, 44%);
+  --key-bg-red-hover: hsl(176.64, 100%, 79.02%);
+  --key-shadow-red: hsl(177, 92%, 70%);
+
+  --key-bg-light: hsl(268, 47%, 21%);
+  --key-bg-hover: hsl(267.5, 53.57%, 43.92%);
+  --key-shadow-light: hsl(290, 70%, 36%);
+
+  /*Text*/
+  --text-grayish-blue: hsl(52, 100%, 62%);
+  --text-white-pure: #ffffff;
+  --text-screen: hsl(52, 100%, 62%);
+  --text-equal-sign: hsl(198, 20%, 13%);
 }
 
 .container {
@@ -53,7 +107,7 @@ body {
   align-items: center;
   padding: 1.5rem 0 1.5rem 0.5rem;
   background: var(--main-bg-blue);
-  /* border: 2px solid yellow; */
+  color: var(--text-screen);
   position: relative;
 }
 
@@ -88,6 +142,16 @@ body {
   background: var(--toggle-bg-blue);
   position: relative;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  padding: 0 0.1rem;
+}
+
+.header__themes--toggle button {
+  width: 100%;
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 
 .header__themes--toggle::before {
@@ -98,7 +162,15 @@ body {
   border-radius: 50%;
   position: absolute;
   top: 4px;
+  left: 6px; /*6, 21.5 38.5*/
+}
+
+.header__themes--toggle.theme-two::before {
   left: 21.5px; /*6, 21.5 38.5*/
+}
+
+.header__themes--toggle.theme-three::before {
+  left: 38.5px; /*6, 21.5 38.5*/
 }
 
 .header__themes--toggle:hover::before {
@@ -106,6 +178,7 @@ body {
 }
 
 .calc-screen {
+  color: var(--text-screen);
   background: var(--screen-bg-dark-blue);
   padding: 1.5rem;
   border-radius: 5px;
@@ -136,7 +209,7 @@ body {
 }
 
 .calc__btn:hover {
-  background: #ffffff;
+  background: var(--key-bg-hover);
 }
 
 .blue__btn {
@@ -156,7 +229,7 @@ body {
 
 .red__btn {
   background: var(--key-bg-red);
-  color: var(--text-white-pure);
+  color: var(--text-equal-sign);
   box-shadow: 0 3px var(--key-shadow-red);
   font-size: 1rem;
   display: flex;
