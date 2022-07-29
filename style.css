@@ -39,6 +39,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: "League Spartan", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
 .theme-two {
@@ -96,9 +99,6 @@ body {
 .container {
   color: var(--text-white-pure);
   padding: 1.5rem;
-  font-family: "League Spartan", sans-serif;
-  font-size: 1.5rem;
-  font-weight: 700;
 }
 
 .header {
@@ -197,6 +197,13 @@ body {
   border-radius: 5px;
   text-align: center;
   font-weight: 900;
+}
+
+button {
+  border: none;
+  font-family: "League Spartan", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
 .calc__btn {
