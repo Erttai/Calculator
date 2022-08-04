@@ -6,9 +6,12 @@ const themeThree = document.querySelector(".three");
 const numberBtn = document.querySelectorAll(".number");
 const displayScreen = document.querySelector(".calc-screen");
 const operatorBtn = document.querySelectorAll(".operator");
+const equalBtn = document.querySelector(".red__btn");
+const resetBtn = document.getElementById("clear");
 let colorTheme;
 
 //
+////////////////////////
 //Color Themes
 const changeColorTheme = function () {
   if (colorTheme === 1) {
@@ -27,6 +30,7 @@ const changeColorTheme = function () {
   }
 };
 
+//
 //Eventlisteners to change calc's color theme
 themeOne.addEventListener("click", () => {
   colorTheme = 1;
@@ -44,6 +48,7 @@ themeThree.addEventListener("click", () => {
 });
 
 //
+//////////////////////
 //Math functions
 function sum(n1, n2) {
   return n1 + n2;
@@ -61,21 +66,34 @@ function divide(n1, n2) {
   return n1 / n2;
 }
 
-function operate(operator, n1, n2) {
+const updateStoredNumber = function (number) {
+  storedNumbers = [];
+  storedNumbers.push(number);
+};
+
+const displayOperation = function (number) {
+  displayScreen.textContent = `${convertStr(number)}`;
+};
+
+const operate = function (operator, n1, n2) {
   if (operator === "+") {
     const total = sum(n1, n2);
-    displayScreen.textContent = `${convertStr(total)}`;
+    displayOperation(total);
+    return total;
   } else if (operator === "-") {
     const total = subtract(n1, n2);
-    displayScreen.textContent = `${convertStr(total)}`;
+    displayOperation(total);
+    return total;
   } else if (operator === "x") {
     const total = multiply(n1, n2);
-    displayScreen.textContent = `${convertStr(total)}`;
+    displayOperation(total);
+    return total;
   } else if (operator === "/") {
     const total = divide(n1, n2);
-    displayScreen.textContent = `${convertStr(total)}`;
+    displayOperation(total);
+    return total;
   }
-}
+};
 
 function convertStr(n) {
   return n.toString().replace(".", ",");
@@ -86,32 +104,65 @@ const parsedNumber = function (array) {
 };
 
 //
+//
 //Printing number in calc's display
 
-let arr = [];
-const storedNumbers = [];
+let arr = [0];
+
+let storedNumbers = [];
+
 let mathOperation = "";
 
 numberBtn.forEach(btn =>
   btn.addEventListener("click", e => {
-    let int = e.target.textContent;
-    arr.push(int);
-    int = parsedNumber(arr);
+    arr.push(e.target.textContent);
+    const int = parsedNumber(arr);
     displayScreen.textContent = `${convertStr(int)}`;
   })
 );
 
 operatorBtn.forEach(btn =>
   btn.addEventListener("click", e => {
-    storedNumbers.push(parsedNumber(arr));
-
-    arr = [];
-
-    const str = e.target.textContent;
-    mathOperation = str;
-
-    if (storedNumbers.length === 2) {
-      operate(mathOperation, ...storedNumbers);
+    if (arr.some(element => typeof element === "string")) {
+      storedNumbers.push(parsedNumber(arr));
+      arr = [];
+      console.log(`Stored number: ${storedNumbers}`);
     }
+
+    //
+    //With this if statement the first complete number is stored for a math operation
+    if (!storedNumbers.length) {
+      storedNumbers.push(parsedNumber(arr));
+      arr = [0];
+      console.log(`Stored number: ${storedNumbers}`);
+    }
+
+    //Automatically calculate the math operation When the user keeps doing calculations without pressing the equal sign:
+    if (storedNumbers.length === 2) {
+      const result = operate(mathOperation, ...storedNumbers);
+      storedNumbers = [];
+      storedNumbers.push(result);
+    }
+
+    mathOperation = e.target.textContent;
+    console.log(mathOperation);
   })
 );
+
+equalBtn.addEventListener("click", function () {
+  //Need to fix bug in case user clicks multiple times equalbtn
+  storedNumbers.push(parsedNumber(arr));
+  arr = [0];
+  const result = operate(mathOperation, ...storedNumbers);
+  mathOperation = "";
+  storedNumbers = [];
+  storedNumbers.push(result);
+  console.log(`Stored number: ${storedNumbers}`);
+});
+
+resetBtn.addEventListener("click", function () {
+  storedNumbers = [];
+  mathOperation = "";
+  arr = [0];
+  displayScreen.textContent = `0`;
+});
